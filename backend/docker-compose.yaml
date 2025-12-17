@@ -23,6 +23,18 @@ services:
       POSTGRES_USER: devops
       POSTGRES_DB: devopsdb
 
+  backend:
+    build: .
+    container_name: devops-back
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/devopsdb
+      DB_USERNAME: devops
+      DB_PASSWORD: admin
+
 
   adminer:
     image: adminer
