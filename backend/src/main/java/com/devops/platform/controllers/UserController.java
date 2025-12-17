@@ -1,5 +1,6 @@
 package com.devops.platform.controllers;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,13 +21,12 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping()
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public UserDto create(@RequestBody CreateUserRequest request){
         return userService.create(request);
     }
 
     @GetMapping()
-
     public List<UserDto> findAll(){
         return userService.findAll();
     }
